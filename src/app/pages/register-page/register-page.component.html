@@ -4,6 +4,9 @@
     <div class="col-md-3"></div>
     <div class="col-md-6">
       <div class="wrapper">
+        <div class="{{ alertClass }}" role="alert">
+          {{ message }}
+        </div>
         <h2>Register</h2>
         <hr />
         <form [formGroup]="registerForm" (submit)="onSubmitHandler()">
@@ -120,13 +123,19 @@
               class="form-control"
               formControlName="confirmPassword"
               required
-              [class.is-invalid]="registerForm.errors?.['notMatchingRegConfirm']"
+              [class.is-invalid]="registerForm.errors?.['notMatchingOldConfirm'] || (confirmPassword?.invalid && confirmPassword?.touched)"
             />
-            <small
-              class="text-danger"
-              *ngIf="registerForm.errors?.['notMatchingRegConfirm']"
-              >Passwords do not match.</small
-            >
+            <div *ngIf="confirmPassword?.errors?.['required'] && confirmPassword?.touched">
+              <small class="text-danger"
+                >Confirm Password is required.</small
+              >
+            </div>
+            <div *ngIf="registerForm?.errors?.['notMatchingOldConfirm'] && confirmPassword?.touched && password?.touched">
+              <small
+                class="text-danger"
+                >Passwords do not match.</small
+              >
+            </div>
           </div>
           <input
             type="submit"

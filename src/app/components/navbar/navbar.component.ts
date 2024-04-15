@@ -11,7 +11,7 @@ export class NavbarComponent {
   constructor(private router: Router, public authService: AuthService) { }
 
   onResetPassword() {
-    this.router.navigateByUrl('login');
+    this.router.navigateByUrl('resetpassword');
   }
 
   onLogin() {

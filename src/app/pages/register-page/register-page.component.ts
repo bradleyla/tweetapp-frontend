@@ -3,7 +3,7 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, NgForm, Validator
 import { Router } from '@angular/router';
 import { IUser } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
-import { PasswordValidatorRegConfirm } from 'src/app/shared/password.validator';
+import { PasswordValidatorOldConfirm } from 'src/app/shared/password.validator';
 
 @Component({
   selector: 'app-register-page',
@@ -28,7 +28,7 @@ export class RegisterPageComponent {
       contactNumber: ['', [Validators.required, Validators.pattern('^\\d{10}$')]],
       password: ['', [Validators.required, Validators.minLength(8)]],
       confirmPassword: ['', Validators.required]
-    }, {validator: PasswordValidatorRegConfirm});
+    }, {validator: PasswordValidatorOldConfirm});
   }
 
   get firstName() {
@@ -64,7 +64,7 @@ export class RegisterPageComponent {
       this.message = response.message;
       this.alertClass = 'alert alert-success';
       console.log(response);
-      this.router.navigateByUrl('home');
+      this.router.navigateByUrl('login');
     }, (error: any) => {
       this.message = "Registration failed, please try again.";
       this.alertClass = 'alert alert-danger';

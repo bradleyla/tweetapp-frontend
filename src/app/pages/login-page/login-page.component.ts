@@ -7,6 +7,9 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { jwtDecode } from 'jwt-decode';
+import { IUser } from 'src/app/models/user.model';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-login-page',
@@ -16,8 +19,10 @@ import { AuthService } from 'src/app/services/auth.service';
 export class LoginPageComponent {
   message = "";
   alertClass = "";
+  user : IUser | null = {}
+  email = "";
 
-  constructor(private authService: AuthService, private formBuilder: FormBuilder, private router: Router) {}
+  constructor(private authService: AuthService, private userService: UserService, private formBuilder: FormBuilder, private router: Router) {}
 
   loginForm = this.formBuilder.group({
     usernameOrEmail: [null, Validators.required],
@@ -40,6 +45,21 @@ export class LoginPageComponent {
       this.alertClass = 'alert alert-success';
       localStorage.setItem('token', response.token);
       console.log(response)
+      const token = localStorage.getItem('token');
+      if(token) {
+        try {
+          const decodedToken = jwtDecode(token);
+          this.email = decodedToken.sub || '';
+          this.authService.getUserByEmail(this.email).subscribe((response: any) => {
+            this.userService.setUser(response);
+            this.user = this.userService.getUser();
+          }, (error: any) => {
+            console.log(error);
+          });
+        } catch (error) {
+          console.error('Invalid token:', error);
+        }
+      }
       this.router.navigateByUrl('home');
     }, (error: any) => {
       this.message = "Login failed, please try again.";

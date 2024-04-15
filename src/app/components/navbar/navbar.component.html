@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">TweetApp</a>
+  <a class="navbar-brand" routerLink="">TweetApp</a>
   <button
     class="navbar-toggler"
     type="button"
@@ -23,7 +23,6 @@
     <form class="form-inline my-2 my-lg-0">
       <button
         type="button"
-        *ngIf="!authService.getToken()"
         (click)="onResetPassword()"
         class="btn btn-secondary"
       >

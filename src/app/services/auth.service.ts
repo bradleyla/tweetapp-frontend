@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root',
@@ -8,9 +9,7 @@ import { Observable } from 'rxjs';
 export class AuthService {
   private AUTH_URL = 'http://localhost:9000/api/v1.0/tweets';
 
-  private username = '';
-
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private userService: UserService) {}
 
   register(data: any): Observable<any> {
     const headers = new HttpHeaders().set(
@@ -37,14 +36,25 @@ export class AuthService {
       'Content-Type',
       'application/json; charset=utf-8'
     );
-    return this.http.post<any>(`${this.AUTH_URL}/${this.username}/forgot`, data, {
-      headers: headers,
-    });
-    
+    const username = this.userService.getUser()?.username;
+    return this.http.post<any>(`${this.AUTH_URL}/${username}/forgot`, data);
+  }
+
+  getAllUsers(): Observable<any> {
+    return this.http.get<any>(`${this.AUTH_URL}/users/all`);
+  }
+
+  getUserByUsername(username: any): Observable<any> {
+    return this.http.get<any>(`${this.AUTH_URL}/user/search/${username}`);
+  }
+
+  getUserByEmail(email: any): Observable<any> {
+    return this.http.get<any>(`${this.AUTH_URL}/user/search/email/${email}`);
   }
 
   logout() {
     localStorage.clear();
+    this.userService.clearUser();
   }
 
   getToken(): boolean {
