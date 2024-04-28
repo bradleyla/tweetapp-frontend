@@ -6,5 +6,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./home-page.component.css']
 })
 export class HomePageComponent {
+  showUsersList: boolean = false;
+  showSearchList: boolean = false;
 
+  toggleUserList(event: boolean) {
+    this.showUsersList = event;
+  }
+
+  toggleSearchList(event: boolean) {
+    this.showSearchList = event;
+  }
 }

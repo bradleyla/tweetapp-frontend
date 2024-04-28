@@ -1,1 +1,21 @@
-/* You can add global styles to this file, and also import other style files */
+.interest-image{
+    width: 125px;
+    height: 125px;
+    object-fit: cover;
+    margin-right: 40px;
+    margin-top: 20px;
+}
+.media-body{
+    width: 125px;
+    height: 125px;
+    object-fit: cover;
+    margin-right: 40px;
+    margin-top: 50px;
+}
+.follow-button{
+    width: 125px;
+    height: 125px;
+    object-fit: cover;
+    margin-right: 40px;
+    margin-top: 60px;
+}

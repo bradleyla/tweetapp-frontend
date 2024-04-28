@@ -15,10 +15,34 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" routerLink="/home"
+        <a
+          class="nav-link"
+          routerLink="/home"
+          (click)="toggleUserListInvisible(); toggleSearchListInvisible()"
           >Home <span class="sr-only">(current)</span></a
         >
       </li>
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/home" (click)="toggleUserListVisible()"
+          >All Users <span class="sr-only">(current)</span></a
+        >
+      </li>
+      <form class="form-inline">
+        <input
+          class="form-control mr-sm-2"
+          type="search"
+          placeholder="Search Users"
+          aria-label="Search Users"
+          #search
+        />
+        <button
+          class="btn btn-outline-success my-2 my-sm-0"
+          type="submit"
+          (click)="searchForUser(search.value)"
+        >
+          Search
+        </button>
+      </form>
     </ul>
     <form class="form-inline my-2 my-lg-0">
       <button

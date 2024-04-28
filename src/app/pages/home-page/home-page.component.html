@@ -1,2 +1,4 @@
-<app-navbar></app-navbar>
-<app-header></app-header>
+<app-navbar (toggleUserList)="toggleUserList($event)" (toggleSearchList)="toggleSearchList($event)"></app-navbar>
+<app-header *ngIf="!showUsersList && !showSearchList"></app-header>
+<app-users-list *ngIf="showUsersList && !showSearchList"></app-users-list>
+<app-users-search *ngIf="!showUsersList && showSearchList"></app-users-search>
