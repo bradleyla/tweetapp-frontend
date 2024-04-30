@@ -1,0 +1,43 @@
+<div class="text-center">
+    <div *ngIf="!creatingReply">
+        <button class="btn btn-primary btn-block my-1" (click)="toggleCreation()">Post Reply</button>
+    </div>
+    <div *ngIf="creatingReply">
+        <form #replyCreateForm="ngForm" (submit)="onReplyCreate()">
+            <div>
+                <label for="replyMessage">Reply</label>
+                <textarea 
+                    rows="4" 
+                    maxlength="144"
+                    class="form-control" 
+                    name="replyContent"
+                    [(ngModel)]="reply.replyMessage"
+                    [class.is-invalid]="(reply.replyMessage.length === 0) && replyData.touched"
+                    id="replyMessage"
+                    required>
+                </textarea>
+                <div class="text-warning text-right small">
+                    {{reply.replyMessage.length}} / 144
+                </div>
+            </div>
+            <div>
+                <label for="tag">Tag</label>
+                <input 
+                    type="text"
+                    maxlength="50"
+                    class="form-control" 
+                    name="tag"
+                    [(ngModel)]="reply.tag"
+                    [class.is-invalid]="replyData.touched && (reply.tag!.length > 50)"
+                    id="tag">
+            </div>
+            <div class="text-center m-2">
+                <input type="submit" class="btn btn-primary" value="Submit"> 
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+<p>new-reply works!</p>
