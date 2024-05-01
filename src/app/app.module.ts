@@ -14,6 +14,7 @@ import { ErrorPageComponent } from './pages/error-page/error-page.component';
 import { ResetPasswordPageComponent } from './pages/reset-password-page/reset-password-page.component';
 import { UsersListComponent } from './components/users-list/users-list.component';
 import { UsersSearchComponent } from './components/users-search/users-search.component';
+import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
 
 
 
@@ -29,7 +30,8 @@ import { UsersSearchComponent } from './components/users-search/users-search.com
     ErrorPageComponent,
     ResetPasswordPageComponent,
     UsersListComponent,
-    UsersSearchComponent
+    UsersSearchComponent,
+    ProfilePageComponent
   ],
   imports: [
     BrowserModule,

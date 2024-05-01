@@ -1,0 +1,44 @@
+<div class="text-center">
+    <div *ngIf="!creatingTweeter">
+        <button class="btn btn-primary btn-block my-1"
+                (click)="toggleCreation()">Post Tweet</button>
+    </div>
+    <div *ngIf="creatingTweeter">
+        <form #tweetCreateForm="ngForm" (submit)="onTweeterCreate()">
+            <div>
+                <label for="">Message</label>
+                <textarea 
+                rows="4" 
+                resize="none"
+                maxlength="144"
+                class="form-control" 
+                name="message"
+                [(ngModel)]="tweeter.message"
+                [class.is-invalid]="(tweeter.message.length===0 || tweeter.message.length > 144) && tweeterData.touched"></textarea>
+            </div>
+            <div class="text-warning  text-right small">
+                {{tweeter.message.length}} / 144
+            </div>
+            <div>
+                <label for="">Tag</label>
+                <input 
+                type="text"
+                maxlength="50"
+                class="form-control" 
+                name="tag"
+                [(ngModel)]="tweeter.tag"
+                [class.is-invalid]="tweeterData.touched && (tweeter.tag!.length > 50) ">
+            </div>
+            <div class="text-center m-2">
+                <input type="submit" class="btn btn-primary"> 
+                <button class=" ml-2 btn btn-outline-light " (click)="toggleCreation()">Cancel</button>
+            </div>
+        </form>
+    </div>
+
+</div>
+
+
+
+
+<p>new-tweeter works!</p>
