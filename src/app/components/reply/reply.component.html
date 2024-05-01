@@ -1,1 +1,36 @@
+<div class="reply">
+    <div class="row">
+        <div class="col-3">
+            <img src="assets/images/profile.png" alt="No profile picture found"
+                    class=" profilePicture mb-2 mt-2">
+        </div>
+        <div class="col-9">
+            <div class="row text-center">
+                <div class="col-6">
+                    <h5 class="text-primary">{{ reply!.user?.username}}</h5>
+                </div>
+                <div class="col-6">
+                    <h6> {{ reply!.createdAt | date:"short"}}</h6>
+                </div>
+            </div>
+            <div class="row">
+                <p>{{ reply!.replyMessage }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="align-content-center row mx-2 ">
+        <span class="mx-1 clickable" >
+            <svg (click)="likeReply()" xmlns="http://www.w3.org/2000/svg" width="10" height="12" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+            </svg>
+        </span>
+        <span class="mx-1">
+            <p > {{ reply.likes }}</p>
+
+        </span>
+    </div>
+</div>
+
+
+
+
 <p>reply works!</p>

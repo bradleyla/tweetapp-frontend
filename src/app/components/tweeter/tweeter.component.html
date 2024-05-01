@@ -1,1 +1,42 @@
+<div class="tweet">
+    <div class="row">
+        <div class="col-3">
+            <img src="assets/images/profile.png" alt="No profile picture found" class="profilePicture mb-2 mt-2">
+        </div>
+        <div class="col-9">
+            <div class="row text-center">
+                <div class="col-6">
+                    <h5 class="text-primary clickable" (click)="routeToProfile(tweet.user!.userId!)">{{ tweeter.user!.username }}</h5>
+                </div>
+                <div class="col-6">
+                    <h6>{{ tweeter.createdAt | date:"short"}}</h6>
+                </div>
+            </div>
+            <div class="row">
+                <p>{{ tweeter.message }}</p>
+            </div>
+            <div class="row">
+                <p>{{ tweeter.tag }}</p>
+            </div>
+        </div>
+        <div class="float-left">
+            
+        </div>
+        <!-- Only display the button if not on the tweet info page -->
+        <div class="text-center m-2" *ngIf="!isOnTweetInfoPage()">
+            <button class="btn btn-primary" (click)="routeToTweetInfo(tweet)">Reply</button>
+        </div>
+    
+            <span class="mx-1">
+                <p > {{ tweeter.likes }}</p>
+    
+            </span>
+        </div>
+
+
+    </div>
+</div>
+
+
+
 <p>tweeter works!</p>
